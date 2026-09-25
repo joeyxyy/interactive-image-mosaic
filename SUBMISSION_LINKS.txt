@@ -1,0 +1,69 @@
+INTERACTIVE IMAGE MOSAIC GENERATOR - SUBMISSION LINKS
+
+REQUIRED SUBMISSION LINKS
+
+1) CODE / GITHUB REPOSITORY
+https://github.com/joeyxyy/interactive-image-mosaic
+
+2) LIVE GRADIO DEMO / HUGGING FACE SPACE
+https://huggingface.co/spaces/Joeyxyy/interactive-image-mosaic
+
+3) PERFORMANCE REPORT PDF
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/performance_report.pdf
+
+ADDITIONAL PROJECT LINKS
+
+README / PROJECT OVERVIEW
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/README.md
+
+SUBMISSION DELIVERABLE INDEX
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/SUBMISSION_DELIVERABLES.md
+
+MAIN APPLICATION SOURCE
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/app.py
+
+PERFORMANCE REPORT SOURCE
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/PERFORMANCE_REPORT.md
+
+TEST IMAGES
+https://github.com/joeyxyy/interactive-image-mosaic/tree/main/examples
+
+SAMPLE OUTPUT
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/screenshots/sample_output.png
+
+TILE SET PREVIEW
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/screenshots/tile_sets.png
+
+AUTOMATED TESTS
+https://github.com/joeyxyy/interactive-image-mosaic/tree/main/tests
+
+GITHUB ACTIONS / CI
+https://github.com/joeyxyy/interactive-image-mosaic/actions
+
+PINNED DEPENDENCIES
+https://github.com/joeyxyy/interactive-image-mosaic/blob/main/requirements.txt
+
+ASSIGNMENT-PROVIDED REFERENCE LINKS
+
+GRADIO
+https://gradio.app/
+
+GRADIO SHARING GUIDE
+https://www.gradio.app/guides/sharing-your-app
+
+HUGGING FACE GRADIO SPACES GUIDE
+https://huggingface.co/blog/gradio-spaces
+
+COLOR QUANTIZATION REFERENCE
+https://en.wikipedia.org/wiki/Color_quantization
+
+CANVAS COPY/PASTE
+
+GitHub Repository:
+https://github.com/joeyxyy/interactive-image-mosaic
+
+Live Gradio Demo:
+https://huggingface.co/spaces/Joeyxyy/interactive-image-mosaic
+
+Performance Report:
+Upload performance_report.pdf
