@@ -17,6 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Generate final submission assets
+        run: |
+          pip install -r requirements.txt reportlab==4.4.9
+          python scripts/generate_assets.py
+
       - name: Install Hugging Face CLI
         run: |
           curl -LsSf https://hf.co/cli/install.sh | bash
