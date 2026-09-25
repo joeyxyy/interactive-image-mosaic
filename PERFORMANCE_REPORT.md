@@ -14,13 +14,13 @@ Reference benchmark on `examples/landscape.png`, using the median of 20 repetiti
 
 | Grid | Cells | Vectorized (ms) | Nested loop (ms) | Speedup |
 | --- | ---: | ---: | ---: | ---: |
-| 16×16 | 256 | 4.344 | 5.342 | 1.23× |
-| 32×32 | 1,024 | 4.562 | 8.442 | 1.85× |
-| 64×64 | 4,096 | 5.314 | 20.346 | 3.83× |
+| 16×16 | 256 | 4.512 | 5.635 | 1.25× |
+| 32×32 | 1,024 | 4.645 | 8.583 | 1.85× |
+| 64×64 | 4,096 | 5.335 | 21.108 | 3.96× |
 
 The nested-loop implementation becomes progressively slower as the number of cells grows because Python performs repeated slicing and averaging for each cell individually. The vectorized implementation reshapes the image into a structured 5-D view and calculates all cell means in one NumPy reduction. Most work therefore remains inside compiled array operations instead of the Python interpreter.
 
-The scaling difference is clearest at 64×64. This grid contains 4,096 cells - sixteen times as many as 16×16 - but the vectorized analysis increases only slightly, from about 4.34 ms to 5.31 ms in this run. The loop method rises from about 5.34 ms to 20.35 ms, producing a measured 3.83× speedup for vectorization.
+The scaling difference is clearest at 64×64. This grid contains 4,096 cells - sixteen times as many as 16×16 - but the vectorized analysis increases only slightly, from about 4.51 ms to 5.34 ms in this run. The loop method rises from about 5.64 ms to 21.11 ms, producing a measured 3.96× speedup for vectorization.
 
 ## 3. Reconstruction quality
 
@@ -32,6 +32,10 @@ For the included landscape example at a 32×32 grid using the Geometric tile set
 
 MSE measures average squared pixel error, so lower values indicate closer pixel-level reconstruction. SSIM measures structural similarity and is bounded near 1.0 for highly similar images. A tile mosaic intentionally replaces local image detail with mini-image texture, so the metrics are useful mainly for comparing settings rather than expecting near-perfect pixel identity.
 
-## 4. Conclusion
+## 4. Verification
 
-Vectorized NumPy is the better approach for cell analysis, especially as grid size increases. The project demonstrates the full pipeline from image preprocessing and segmentation through tile matching, reconstruction, similarity evaluation, and interactive presentation. The included live benchmark allows users to reproduce the timing comparison on their own machine or Hugging Face Space environment.
+The final automated suite contains **9 tests**. It verifies preprocessing, all three grid sizes, vectorized/loop equivalence, tile mapping, all tile sets and rendering styles, valid MSE/SSIM output, color-category accounting, benchmark structure, tile-sheet generation, example generation, and complete end-to-end processing. GitHub Actions independently runs the tests on every push, and the deployment workflow publishes the same source to the Hugging Face Space.
+
+## 5. Conclusion
+
+Vectorized NumPy is the better approach for cell analysis, especially as grid size increases. The project demonstrates the full pipeline from image preprocessing and segmentation through tile matching, reconstruction, similarity evaluation, interactive presentation, reproducible benchmarking, automated testing, and live deployment. The built-in benchmark allows users to reproduce the timing comparison on their own machine or Hugging Face Space environment.
