@@ -1,0 +1,32 @@
+name: Generate submission assets
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  assets:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt reportlab==4.4.9
+      - run: python scripts/generate_assets.py
+      - name: Commit generated assets when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add examples screenshots performance_report.pdf
+          if git diff --cached --quiet; then
+            echo "Generated assets already up to date."
+          else
+            git commit -m "Refresh generated submission assets"
+            git push
+          fi
