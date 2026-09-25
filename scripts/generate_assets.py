@@ -65,9 +65,9 @@ def build_pdf():
 
     data = [
         ["Grid", "Cells", "Vectorized (ms)", "Nested loop (ms)", "Speedup"],
-        ["16 x 16", "256", "4.498", "5.590", "1.24x"],
-        ["32 x 32", "1,024", "4.741", "8.708", "1.84x"],
-        ["64 x 64", "4,096", "5.174", "20.578", "3.98x"],
+        ["16 x 16", "256", "4.512", "5.635", "1.25x"],
+        ["32 x 32", "1,024", "4.645", "8.583", "1.85x"],
+        ["64 x 64", "4,096", "5.335", "21.108", "3.96x"],
     ]
     table = Table(data, colWidths=[75, 70, 112, 116, 78])
     table.setStyle(TableStyle([
@@ -83,7 +83,7 @@ def build_pdf():
         table,
         Spacer(1, 9),
         Paragraph("The loop implementation scales more sharply because Python processes every cell separately. The vectorized implementation performs the reduction in optimized NumPy array code, so the performance advantage grows with grid resolution.", styles["RBody"]),
-        Paragraph("At 64 x 64, the reference benchmark shows vectorized analysis at 5.174 ms versus 20.578 ms for nested loops, a 3.98x speedup.", styles["RBody"]),
+        Paragraph("At 64 x 64, the reference benchmark shows vectorized analysis at 5.335 ms versus 21.108 ms for nested loops, a 3.96x speedup.", styles["RBody"]),
         Paragraph("Reconstruction quality", styles["RHead"]),
         Paragraph("For the included landscape example at 32 x 32 using Geometric tiles and Colorized style, one reference run produced <b>MSE 439.40</b>, <b>SSIM 0.2101</b>, and approximately <b>0.16 s</b> processing time.", styles["RBody"]),
         Paragraph("Verification", styles["RHead"]),
