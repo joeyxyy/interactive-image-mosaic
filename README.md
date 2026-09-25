@@ -8,7 +8,7 @@ sdk_version: 6.28.0
 app_file: app.py
 pinned: false
 license: mit
-short_description: Reconstruct images as interactive tile mosaics with NumPy and Gradio.
+short_description: Interactive image mosaics with NumPy and Gradio.
 ---
 
 # Interactive Image Mosaic Generator
