@@ -75,3 +75,17 @@ def test_examples_are_generated():
     root = Path(app.__file__).parent / "examples"
     for name in ["gradient.png", "landscape.png", "portrait.png"]:
         assert (root / name).exists()
+
+
+def test_benchmark_structure():
+    rows, analysis = app.benchmark(synthetic_image())
+    assert len(rows) == 3
+    assert [row[0] for row in rows] == ["16×16", "32×32", "64×64"]
+    assert all(row[1] > 0 and row[2] >= 0 and row[3] >= 0 and row[4] > 0 for row in rows)
+    assert "Scaling analysis" in analysis
+
+
+def test_tile_sheet_dimensions():
+    for name in app.TILE_SET_NAMES:
+        sheet = app.tile_sheet(name)
+        assert sheet.size == (8 * app.TILE_PX * 3, 3 * app.TILE_PX * 3)
