@@ -8,13 +8,14 @@ sdk_version: 6.28.0
 app_file: app.py
 pinned: false
 license: mit
-short_description: Interactive image mosaics with NumPy and Gradio.
+short_description: Reconstruct images as interactive tile mosaics with NumPy and Gradio.
 ---
 
 # Interactive Image Mosaic Generator
 
 An interactive image-processing project that segments an uploaded image into a grid and reconstructs it using representative mini-image tiles. The implementation emphasizes vectorized NumPy operations, measurable reconstruction quality, performance analysis, and an easy-to-use Gradio demo.
 
+![Sample output](screenshots/sample_output.png)
 
 ## Features
 
@@ -28,9 +29,11 @@ An interactive image-processing project that segments an uploaded image into a g
 - Display the **original/preprocessed image**, **segmented color grid**, and **final mosaic** side by side.
 - Evaluate reconstruction quality with **MSE** and **SSIM**.
 - Compare **vectorized NumPy vs. nested-loop** implementations at 16×16, 32×32, and 64×64.
-- Generates three deterministic example images automatically and includes automated tests.
+- Includes three built-in example images and automated tests.
 
 ## Tile sets
+
+![Tile sets](screenshots/tile_sets.png)
 
 Each tile set contains 24 mini-images spanning a broad color palette. The tile art is generated deterministically, so the application is fully self-contained and does not depend on external assets or network calls.
 
@@ -51,9 +54,9 @@ Reference benchmark on the included `examples/landscape.png` image:
 
 | Grid | Cells | Vectorized | Nested loop | Speedup |
 | --- | ---: | ---: | ---: | ---: |
-| 16×16 | 256 | 4.344 ms | 5.342 ms | 1.23× |
-| 32×32 | 1,024 | 4.562 ms | 8.442 ms | 1.85× |
-| 64×64 | 4,096 | 5.314 ms | 20.346 ms | 3.83× |
+| 16×16 | 256 | 4.512 ms | 5.635 ms | 1.25× |
+| 32×32 | 1,024 | 4.645 ms | 8.583 ms | 1.85× |
+| 64×64 | 4,096 | 5.335 ms | 21.108 ms | 3.96× |
 
 The loop implementation scales more sharply because Python processes every cell separately. The vectorized method keeps the reduction inside optimized NumPy operations, so the performance advantage becomes larger as grid resolution increases.
 
@@ -63,7 +66,7 @@ For the 32×32 Geometric/Colorized example, one reference run produced **MSE 439
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
 ```
@@ -77,7 +80,7 @@ pip install -r requirements-dev.txt
 pytest -q
 ```
 
-The test suite checks preprocessing, all three grid sizes, vectorized/loop equivalence, all tile sets and styles, valid MSE/SSIM output, color-category accounting, and complete end-to-end processing.
+The final test suite contains **9 automated tests** covering preprocessing, all three grid sizes, vectorized/loop equivalence, all tile sets and styles, valid MSE/SSIM output, color-category accounting, benchmark structure, tile-sheet generation, example generation, and complete end-to-end processing.
 
 ## Project structure
 
@@ -86,19 +89,50 @@ interactive-image-mosaic/
 ├── app.py
 ├── README.md
 ├── PERFORMANCE_REPORT.md
+├── performance_report.pdf
 ├── requirements.txt
 ├── requirements-dev.txt
 ├── LICENSE
-├── examples/                 # generated automatically at first launch
+├── examples/
+│   ├── gradient.png
+│   ├── landscape.png
+│   └── portrait.png
+├── screenshots/
+│   ├── sample_output.png
+│   └── tile_sets.png
+├── scripts/
+│   └── generate_assets.py
 ├── tests/
+│   ├── conftest.py
 │   └── test_app.py
 └── .github/workflows/
+    ├── generate-assets.yml
     ├── sync-to-huggingface.yml
     └── tests.yml
 ```
+
+## Requirement coverage checklist
+
+| Assignment requirement | Implementation |
+| --- | --- |
+| Test images and preprocessing | Three included examples; center-crop and resize to 512×512 |
+| Fixed-grid segmentation | 16×16, 32×32, and 64×64 options |
+| Vectorized cell analysis | NumPy reshape + mean across all grid cells |
+| Color classification | Red, Orange, Yellow, Green, Cyan, Blue, Purple, Neutral |
+| Predefined tile set | Three deterministic 24-tile sets |
+| Cell-to-tile mapping | Nearest average RGB using squared Euclidean distance |
+| Gradio interface | Upload, grid selector, tile-set selector, rendering-style selector |
+| Original / segmented / mosaic views | All three displayed side by side |
+| Similarity evaluation | MSE and SSIM |
+| Performance analysis | Median timing at 16×16, 32×32, 64×64 |
+| Vectorized vs. loop comparison | Both implementations included and benchmarked |
+| Creativity | Multiple tile sets and three rendering styles |
+| Live demo | Hugging Face Space deployment |
+| Performance report | Markdown and formatted PDF |
+| Reproducibility | Pinned dependencies, automated tests, CI, deployment workflow, reproducible asset generator |
 
 ## Assignment coverage
 
 This project includes image preprocessing, fixed-grid segmentation, vectorized cell analysis, color categorization, a predefined tile set, cell-to-tile matching, Gradio controls for grid size and tile set, original/segmented/final presentation, MSE and SSIM evaluation, performance timing for 16×16/32×32/64×64, and a direct vectorized-vs-loop comparison.
 
-A formatted 1–2 page performance report is provided with the submission, and the same analysis is documented in `PERFORMANCE_REPORT.md`.
+A formatted 1–2 page performance report is included as `performance_report.pdf`.
