@@ -18,6 +18,7 @@ An interactive image-processing project that segments an uploaded image into a g
 **Live Gradio demo:** https://huggingface.co/spaces/Joeyxyy/interactive-image-mosaic  
 **GitHub repository:** https://github.com/joeyxyy/interactive-image-mosaic  
 **Submission links/index:** [SUBMISSION_DELIVERABLES.md](SUBMISSION_DELIVERABLES.md)  
+**Copy/paste links file:** [SUBMISSION_LINKS.txt](SUBMISSION_LINKS.txt)  
 **Performance report:** [performance_report.pdf](performance_report.pdf)
 
 ![Sample output](screenshots/sample_output.png)
@@ -107,6 +108,7 @@ The project goes beyond the minimum requirements with:
 | 1–2 page performance report | [performance_report.pdf](performance_report.pdf) |
 | Detailed report source | [PERFORMANCE_REPORT.md](PERFORMANCE_REPORT.md) |
 | Submission link/index file | [SUBMISSION_DELIVERABLES.md](SUBMISSION_DELIVERABLES.md) |
+| Copy/paste links file | [SUBMISSION_LINKS.txt](SUBMISSION_LINKS.txt) |
 | Main application | [app.py](app.py) |
 | Test images | [examples/](examples/) |
 | Automated tests | [tests/](tests/) |
@@ -144,6 +146,7 @@ interactive-image-mosaic/
 ├── app.py
 ├── README.md
 ├── SUBMISSION_DELIVERABLES.md
+├── SUBMISSION_LINKS.txt
 ├── PERFORMANCE_REPORT.md
 ├── performance_report.pdf
 ├── requirements.txt
